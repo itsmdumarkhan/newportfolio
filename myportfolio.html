@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MD UMAR KHAN Enterprises | Web Dev Portfolio</title>
+    <!-- Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter (main body font) and Montserrat (logo/header font) --><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Montserrat:wght@800&display=swap" rel="stylesheet">
+    <style>
+        /* Custom CSS for a professional, minimal look and animations */
+        :root {
+            --primary-color: #6366f1; /* Indigo-500 */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            /* UPDATED: Darker gradient colors */
+            background: linear-gradient(-45deg, #000000, #0A0A1F, #1A2040, #003333); 
+            background-size: 400% 400%; 
+            color: #ffffff; /* Main text color to white */
+            transition: color 0.3s ease; 
+            scroll-behavior: smooth;
+            animation: gradient-animation 20s ease infinite; 
+        }
+        
+        /* Keyframes for the continuous, dynamic gradient animation (BODY) */
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 100% 75%; }
+            50% { background-position: 100% 50%; }
+            75% { background-position: 0% 25%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Font for the header text/logo */
+        .logo-font {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+        }
+
+        /* NEW: Reusable glass card style for sections (Hobbies/Contact background) */
+        .glass-card-white {
+            background-color: rgba(255, 255, 255, 0.1); /* Light transparency */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        /* --- BUTTON ANIMATION KEYFRAMES --- */
+        
+        /* Wavy/Bouncy Animation for buttons/cards */
+        @keyframes button-wave {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-3px) scale(1.01); }
+        }
+        
+        /* Dynamic Gradient Shift for buttons/cards */
+        @keyframes button-gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* UPDATED: Dynamic Gradient, Wavy/Bouncy Button Style (Navigation & Contact) */
+        .nav-animated-button {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            color: #ffffff; 
+
+            /* Dynamic Gradient Background (Indigo, Purple, Pink) */
+            background: linear-gradient(90deg, #6366f1, #9333ea, #db2777);
+            background-size: 300% 300%;
+            
+            /* Glass Effect & Border */
+            backdrop-filter: blur(8px); 
+            -webkit-backdrop-filter: blur(8px); 
+            border: 1px solid rgba(255, 255, 255, 0.5); 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); 
+
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative; 
+            
+            /* Apply continuous animations: Gradient Shift & Wavy Bounce */
+            animation: 
+                button-gradient-shift 5s ease infinite,
+                button-wave 2s ease-in-out infinite alternate;
+        }
+
+        /* Staggered delay for the wavy effect across navigation buttons */
+        .nav-animated-button:nth-child(1) { animation-delay: 0s, 0s; }    /* About */
+        .nav-animated-button:nth-child(2) { animation-delay: 0s, 0.1s; }  /* Skills */
+        .nav-animated-button:nth-child(3) { animation-delay: 0s, 0.2s; }  /* Education */
+        .nav-animated-button:nth-child(4) { animation-delay: 0s, 0.3s; }  /* Contact */
+
+        .nav-animated-button:hover {
+            transform: scale(1.05);
+            /* Pause the wave animation on hover for better focus */
+            animation: button-gradient-shift 5s ease infinite; 
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-animated-button:active {
+            transform: translateY(1px); 
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15); 
+        }
+        
+        /* UPDATED: Animated Skill Card Style for blocks */
+        .skill-animated-card {
+            /* Styling for the card container */
+            padding: 1.5rem; /* p-6 */
+            border-radius: 0.75rem; /* rounded-xl */
+            border-bottom-width: 4px; /* border-b-4 */
+            border-color: #6366f1; /* border-indigo-500 */
+            cursor: default;
+            
+            /* Dynamic Gradient Background (Indigo, Purple, Pink) */
+            background: linear-gradient(90deg, #6366f1, #9333ea, #db2777);
+            background-size: 300% 300%;
+            
+            /* Glass Effect & Border */
+            backdrop-filter: blur(8px); 
+            -webkit-backdrop-filter: blur(8px); 
+            border-top: 1px solid rgba(255, 255, 255, 0.5); /* Lighter top border for highlight */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); 
+
+            /* Transitions for hover effects */
+            transition: all 0.3s ease;
+
+            /* Combine Entrance, Gradient Shift & Wavy Bounce */
+            animation: 
+                slide-in-blurred-bottom 0.6s cubic-bezier(0.230, 1.000, 0.320, 1.000) both, 
+                button-gradient-shift 5s ease infinite,
+                button-wave 2s ease-in-out infinite alternate;
+        }
+
+        /* Card Hover Effects */
+        .skill-animated-card:hover {
+            transform: scale(1.05) translateY(-4px); /* Combined scale and translate */
+            box-shadow: 0 12px 20px rgba(99, 102, 241, 0.5); /* Glow shadow on hover */
+            /* Pause the wave animation on hover for better focus */
+            animation: slide-in-blurred-bottom 0.6s cubic-bezier(0.230, 1.000, 0.320, 1.000) both,
+                       button-gradient-shift 5s ease infinite; 
+        }
+
+        /* Redefine Nth-Child for Skill Cards to account for three animation properties */
+        .skill-card:nth-child(1) { animation-delay: 0.1s, 0s, 0s; } 
+        .skill-card:nth-child(2) { animation-delay: 0.2s, 0s, 0.1s; }
+        .skill-card:nth-child(3) { animation-delay: 0.3s, 0s, 0.2s; }
+        .skill-card:nth-child(4) { animation-delay: 0.4s, 0s, 0.3s; }
+        .skill-card:nth-child(5) { animation-delay: 0.5s, 0s, 0.4s; }
+        .skill-card:nth-child(6) { animation-delay: 0.6s, 0s, 0.5s; }
+
+        /* --- Other Animation Setup --- */
+        
+        /* General fade-in-up class - mostly used for triggering visibility */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Text entrance animation */
+        @keyframes text-focus-in {
+            0% { filter: blur(12px); opacity: 0; }
+            100% { filter: blur(0px); opacity: 1; }
+        }
+        .text-focus-in {
+            animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+        }
+        
+        /* Hero Text animations - keep existing for initial entry */
+        @keyframes tracking-in-expand {
+            0% { letter-spacing: -0.5em; opacity: 0; }
+            40% { opacity: 0.6; }
+            100% { opacity: 1; letter-spacing: normal; }
+        }
+        .tracking-in-expand {
+            animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+        }
+
+        /* Other existing animations */
+        @keyframes fade-in-bottom {
+            0% { transform: translateY(50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        .fade-in-bottom {
+            animation: fade-in-bottom 0.8s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+        }
+
+        @keyframes flicker-in-1 {
+            0% { opacity: 0; }
+            10.0% { opacity: 0; }
+            10.1% { opacity: 1; }
+            10.2% { opacity: 0; }
+            20% { opacity: 0; }
+            20.1% { opacity: 1; }
+            20.6% { opacity: 0; }
+            30% { opacity: 0; }
+            30.1% { opacity: 1; }
+            30.5% { opacity: 1; }
+            30.6% { opacity: 0; }
+            45% { opacity: 0; }
+            45.1% { opacity: 1; }
+            50% { opacity: 1; }
+            55% { opacity: 1; }
+            55.1% { opacity: 0; }
+            57% { opacity: 0; }
+            57.1% { opacity: 1; }
+            60% { opacity: 1; }
+            60.1% { opacity: 0; }
+            65% { opacity: 0; }
+            65.1% { opacity: 1; }
+            75% { opacity: 1; }
+            75.1% { opacity: 0; }
+            77% { opacity: 0; }
+            77.1% { opacity: 1; }
+            85% { opacity: 1; }
+            85.1% { opacity: 0; }
+            86% { opacity: 0; }
+            86.1% { opacity: 1; }
+            100% { opacity: 1; }
+        }
+        .flicker-in-1 {
+            animation: flicker-in-1 2s linear both;
+        }
+
+        @keyframes slide-in-blurred-bottom {
+            0% { transform: translateY(1000px) scaleY(2.5) scaleX(0.2); filter: blur(40px); opacity: 0; }
+            100% { transform: translateY(0) scaleY(1) scaleX(1); filter: blur(0); opacity: 1; }
+        }
+        .slide-in-blurred-bottom {
+            animation: slide-in-blurred-bottom 0.6s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+        }
+
+        @keyframes swing-in-top-fwd {
+            0% { transform: rotateX(-100deg); transform-origin: top; opacity: 0; }
+            100% { transform: rotateX(0deg); transform-origin: top; opacity: 1; }
+        }
+        .swing-in-top-fwd {
+            animation: swing-in-top-fwd 0.6s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
+        }
+        
+        @keyframes scale-up-center {
+            0% { transform: scale(0.5); }
+            100% { transform: scale(1); }
+        }
+        .scale-up-center {
+            animation: scale-up-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        }
+
+        /* Delay for sequential animation of scroll-triggered elements */
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.5s; }
+
+
+        /* Custom timeline styles - remain similar */
+        .timeline-item {
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 8px;
+            height: 8px;
+            /* UPDATED: Timeline dots use orange gradient for consistency */
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            border: 2px solid #020617; 
+            z-index: 10;
+        }
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 3.5px; 
+            top: 1rem;
+            bottom: -1rem;
+            width: 1px;
+            background-color: #334155; 
+        }
+
+        /* Pulsating animation for contact button */
+        @keyframes pulse-once {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.01); }
+            100% { transform: scale(1); }
+        }
+        .contact-button-pulse:hover {
+            animation: pulse-once 0.8s ease-in-out;
+        }
+
+        /* Ensure .fade-in-up elements are initially hidden before JS makes them visible */
+        .fade-in-up { opacity: 0; transform: translateY(20px); }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Header & Navigation --><header class="sticky top-0 z-50 bg-slate-950/20 backdrop-blur-md border-b border-indigo-900/50 transition duration-300">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <!-- Logo with Montserrat/Google Sans style font - UPDATED: Gradient and text -->
+            <a href="#" class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-orange-400 transition duration-300 logo-font">MD UMAR KHAN</a>
+            
+            <!-- Liquid Glass Navigation Buttons (Hidden on mobile) -->
+            <div class="space-x-4 hidden sm:block">
+                <!-- Buttons use the new dynamic animated style -->
+                <a href="#summary" class="nav-animated-button">About</a>
+                <a href="#skills" class="nav-animated-button">Skills</a>
+                <a href="#education" class="nav-animated-button">Education</a>
+                <a href="#contact" class="nav-animated-button">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-24">
+
+        <!-- 1. Hero / Summary Section --><section id="summary" class="min-h-[50vh] flex items-center mb-20 lg:mb-32">
+            <div class="text-center w-full">
+                <!-- UPDATED: Text color changed to orange gradient -->
+                <p class="text-xl font-medium mb-3 tracking-in-expand text-transparent bg-clip-text bg-gradient-to-r from-white to-orange-400">Hello, I'm MD UMAR KHAN</p>
+                <h1 class="text-5xl sm:text-7xl lg:text-8xl font-black mb-6 leading-tight text-transparent bg-clip-text bg-gradient-to-r from-white to-orange-400 text-focus-in">
+                    B.Tech Student and<br>
+                    Web Development Learner
+                </h1>
+                <!-- Hero paragraph content -->
+                <p class="max-w-3xl mx-auto text-xl text-white fade-in-bottom">
+                    I am currently pursuing B.Tech at BBD University and actively exploring the field of Web Development while simultaneously strengthening my Data Structures and Algorithms (DSA) skills. I am committed to building a strong foundation in modern technologies through continuous learning and hands-on practice.
+                </p>
+            </div>
+        </section>
+
+        <!-- 2. Skills Section --><section id="skills" class="mb-20 lg:mb-32">
+            <!-- UPDATED: Text color changed to orange gradient -->
+            <h2 class="text-4xl font-bold text-center mb-12 flicker-in-1 fade-in-up text-transparent bg-clip-text bg-gradient-to-r from-white to-orange-400">Technical Skills</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                
+                <!-- Skill Card Template - uses skill-animated-card -->
+                <div class="skill-card skill-animated-card transition duration-300">
+                    <!-- UPDATED: Icon color changed to orange gradient -->
+                    <span class="block text-4xl mb-2 text-center text-transparent bg-clip-text bg-gradient-to-r from-white to-orange-400">🐍</span>
+                    <p class="text-lg font-semibold text-center">Python</p>
+                </div>
+
+                <div class="skill-card skill-animated-card transition duration-300">
+                    <!-- UPDATED: Icon color changed to orange gradient -->
+                    <span class="block text-4xl mb-2 text-center text-transparent bg-clip-text bg-gradient-to-r from-white to-orange-400">🗄️</span>
+                    <p class="text-lg font-semibold text-center">DBMS (Python)</p>
+                </div>
+
+                <div class="skill-card skill-animated-card transition duration-300">
+                    <!-- UPDATED: Icon color changed to orange gradient -->
+                    <span class="block text-4xl mb-2 text-center text-transparent bg-clip-text bg-gradient-to-r from-white to-orange-400">🌳</span>
+                    <p class="text-lg font-semibold text-center">DSA (Java)</p>
+                </div>
+
+                <div class="skill-card skill-animated-card transition duration-300">
+                    <!-- UPDATED: Icon color changed to orange gradient -->
+                    <span class="block text-4xl mb-2 text-center text-transparent bg-clip-text bg-gradient-to-r from-white to-orange-400">🔨</span>
+                    <p class="text-lg font-semibold text-center">C Language</p>
+                </div>
+                
+                <div class="skill-card skill-animated-card transition duration-300">
+                    <!-- UPDATED: Icon color changed to orange gradient -->
+                    <span class="block text-4xl mb-2 text-center text-transparent bg-clip-text bg-gradient-to-r from-white to-orange-400">🌐</span>
+                    <p class="text-lg font-semibold text-center">HTML</p>
+                </div>
+
+                <div class="skill-card skill-animated-card transition duration-300">
+                    <!-- UPDATED: Icon color changed to orange gradient -->
+                    <span class="block text-4xl mb-2 text-center text-transparent bg-clip-text bg-gradient-to-r from-white to-orange-400">🎨</span>
+                    <p class="text-lg font-semibold text-center">CSS</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Education Section --><section id="education" class="mb-20 lg:mb-32">
+            <!-- UPDATED: Text color changed to orange gradient -->
+            <h2 class="text-4xl font-bold text-center mb-12 flicker-in-1 fade-in-up text-transparent bg-clip-text bg-gradient-to-r from-white to-orange-400">Academic Journey</h2>
+            <div class="relative max-w-2xl mx-auto">
+                
+                <!-- Vertical Timeline Line --><div class="absolute left-2 top-0 bottom-0 w-[1px] bg-slate-700 hidden sm:block"></div>
+
+                <!-- Timeline Item: B.Tech - now uses swing-in-top-fwd --><div class="timeline-item mb-10 swing-in-top-fwd">
+                    <!-- UPDATED: Text color changed to orange gradient -->
+                    <p class="text-xs uppercase tracking-wider font-semibold text-transparent bg-clip-text bg-gradient-to-r from-white to-orange-400">2023 - Present</p>
+                    <h3 class="text-2xl font-bold mt-1">B.Tech (CSE)</h3>
+                    <p class="text-white">BBD University</p>
+                    <p class="text-sm mt-1 bg-indigo-900/50 p-2 rounded-lg inline-block">Currently in 3rd Year</p>
+                </div>
+
+                <!-- Timeline Item: 12th Grade --><div class="timeline-item mb-10 swing-in-top-fwd">
+                    <!-- UPDATED: Text color changed to orange gradient -->
+                    <p class="text-xs uppercase tracking-wider font-semibold text-transparent bg-clip-text bg-gradient-to-r from-white to-orange-400">Pre-University</p>
+                    <h3 class="text-2xl font-bold mt-1">12th Grade</h3>
+                    <p class="text-white">Score: 64%</p>
+                </div>
+
+                <!-- Timeline Item: 10th Grade --><div class="timeline-item swing-in-top-fwd">
+                    <!-- UPDATED: Text color changed to orange gradient -->
+                    <p class="text-xs uppercase tracking-wider font-semibold text-transparent bg-clip-text bg-gradient-to-r from-white to-orange-400">Secondary School</p>
+                    <h3 class="text-2xl font-bold mt-1">10th Grade</h3>
+                    <p class="text-white">Score: 80%</p>
+                </div>
+
+            </div>
+        </section>
+        
+        <!-- 4. Hobbies & Contact --><section id="hobbies" class="mb-20 lg:mb-32">
+            <!-- UPDATED: Text color changed to orange gradient -->
+            <h2 class="text-4xl font-bold text-center mb-12 flicker-in-1 fade-in-up text-transparent bg-clip-text bg-gradient-to-r from-white to-orange-400">My Interests</h2>
+            <!-- UPDATED: Hobbies box uses skill-animated-card for dynamic effect -->
+            <div class="max-w-xl mx-auto text-center skill-animated-card scale-up-center" style="animation-delay: 0.7s, 0s, 0.6s;">
+                <!-- Hobbies paragraph content -->
+                <p class="text-lg text-white">
+                    I have a keen interest in exploring emerging technologies and gadgets, sketching, and following motor and combat sports. These pursuits outside academics enhance my creativity and strengthen my analytical thinking skills.
+                </p>
+            </div>
+        </section>
+
+        <section id="contact" class="mb-10">
+            <!-- UPDATED: Text color changed to orange gradient -->
+            <h2 class="text-4xl font-bold text-center mb-8 flicker-in-1 fade-in-up text-transparent bg-clip-text bg-gradient-to-r from-white to-orange-400">Get In Touch</h2>
+            <div class="text-center scale-up-center">
+                <p class="text-xl text-white mb-4">I'm currently looking for new opportunities and always open to discussing new projects.</p>
+                <!-- Contact button uses the new dynamic animated style -->
+                <a href="mailto:immdumarkhan@gmail.com" class="nav-animated-button w-fit py-3 px-8 text-xl contact-button-pulse block mx-auto">
+                    immdumarkhan@gmail.com
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer --><footer class="bg-slate-900 border-t border-indigo-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-slate-300">
+            <p>© 2025 All Rights Reserved By Umar Enterprises.</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for Scroll Animation (Intersection Observer)
+        document.addEventListener('DOMContentLoaded', () => {
+            // Target all animated elements
+            const elements = document.querySelectorAll('.fade-in-up, .tracking-in-expand, .text-focus-in, .fade-in-bottom, .flicker-in-1, .slide-in-blurred-bottom, .swing-in-top-fwd, .scale-up-center');
+            
+            // Options for the observer
+            const observerOptions = {
+                root: null, // relative to viewport
+                rootMargin: '0px',
+                threshold: 0.1 // 10% of element visible
+            };
+
+            // Callback function to execute when an element is observed
+            const observerCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Apply 'visible' class if it's a fade-in-up, otherwise just let the animation run
+                        if (entry.target.classList.contains('fade-in-up')) {
+                            entry.target.classList.add('visible');
+                        } else {
+                            // Start custom animations
+                            entry.target.style.animationPlayState = 'running';
+                        }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            };
+
+            // Create the Intersection Observer
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+            // Observe all elements with custom animations
+            elements.forEach(element => {
+                // IMPORTANT: We do not pause the animated buttons/cards to allow the wave/gradient to start immediately.
+                if (!element.classList.contains('fade-in-up') && !element.classList.contains('nav-animated-button') && !element.classList.contains('skill-animated-card')) {
+                    element.style.animationPlayState = 'paused';
+                }
+                observer.observe(element);
+            });
+            
+            // Ensure immediate animations still run (These are not scroll-triggered)
+            const trackingExpand = document.querySelector('.tracking-in-expand');
+            if (trackingExpand) trackingExpand.style.animationPlayState = 'running';
+            
+            const textFocusIn = document.querySelector('.text-focus-in');
+            if (textFocusIn) textFocusIn.style.animationPlayState = 'running';
+
+            const fadeInBottom = document.querySelector('.fade-in-bottom');
+            if (fadeInBottom) fadeInBottom.style.animationPlayState = 'running';
+        });
+    </script>
+</body>
+</html>
